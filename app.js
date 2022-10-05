@@ -2,16 +2,16 @@ let resertBTn = document.getElementById("reset");
 let scoreplayer = document.getElementById("score_player");
 let scorecomputer = document.getElementById("score_computer");
 let btn_player=[...document.getElementsByClassName("btn_player")];
-let crock=document.getElementById("orock");
-let cpaper=document.getElementById("opaper");
-let cscissors=document.getElementById("oscissors");
+let crock=document.getElementById("crock");
+let cpaper=document.getElementById("cpaper");
+let cscissors=document.getElementById("cscissors");
 let message=document.getElementById("message");
 let nextBtn=document.getElementById("next");
 
-const play = (e) {
+const play = (e) => {
     let choice = e.target.closest(".btn_player");
 
-    btn_player.forEach((btn) {
+    btn_player.forEach((btn) => {
         btn.classList.add("desactivated");
         bnt.removeEventListener("click",play);
     })
@@ -32,7 +32,7 @@ const rock="rock";
 const paper="paper";
 const scissors="scissors";
 
-const makechoisecomputer = () {
+const makechoisecomputer = () => {
     let randomnumb = Math.floor(Math.random()*3);
     switch(randomnumb){
         case 0 : 
@@ -48,7 +48,7 @@ const makechoisecomputer = () {
     }
 };
 
-const verifywiner = (gamerchoice,computerchoise) {
+const verifywiner = (gamerchoice,computerchoise) => {
 if(gamerchoice==computerchoise){
     message.textContent = "Draw !";
     return;
@@ -56,23 +56,23 @@ if(gamerchoice==computerchoise){
     if (gamerchoice == rock){
         if (computerchoise == paper){
             return computerwin();
-        } else if (computerchoise==scissors){
+        } else if (computerchoise==cscissors){
             return playerwin();
         }
     }
 
     if (gamerchoice == paper){
-        if (computerchoise == scissors){
+        if (computerchoise == cscissors){
             return computerwin();
-        } else if (computerchoise==rock){
+        } else if (computerchoise==crock){
             return playerwin();
         }
     }
 
     if (gamerchoice == scissors){
-        if (computerchoise == rock){
+        if (computerchoise == crock){
             return computerwin();
-        } else if (computerchoise==paper){
+        } else if (computerchoise==cpaper){
             return playerwin();
         }
     }
@@ -80,11 +80,11 @@ if(gamerchoice==computerchoise){
 };
 
 
-const computerwin = () {
+const computerwin = () => {
     message.textContent = "Computer has won...";
     computerscore.textContent++;
 };
-const playerwin = () {
+const playerwin = ()=> {
     message.textContent = "Player has won :)";
     computerscore.textContent++;
 };
