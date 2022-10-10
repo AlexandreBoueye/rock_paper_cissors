@@ -9,12 +9,13 @@ let message=document.getElementById("message");
 let nextBtn=document.getElementById("next");
 
 const play = (e) => {
+    for(i=0; i<5; i++);
     let choice = e.target.closest(".btn_player");
 
     btn_player.forEach((btn) => {
         btn.classList.add("desactivated");
         bnt.removeEventListener("click",play);
-    })
+    });
     
     choice.classList.remove("descativated");
     choice.classList.add("active");
@@ -52,7 +53,7 @@ const verifywiner = (gamerchoice,computerchoise) => {
 if(gamerchoice==computerchoise){
     message.textContent = "Draw !";
     return;
-
+    }
     if (gamerchoice == rock){
         if (computerchoise == paper){
             return computerwin();
@@ -76,7 +77,7 @@ if(gamerchoice==computerchoise){
             return playerwin();
         }
     }
-}
+
 };
 
 
@@ -88,4 +89,32 @@ const playerwin = ()=> {
     message.textContent = "Player has won :)";
     computerscore.textContent++;
 };
-btn_player.forEach(btn.addEventListener("click",play))
+
+const newgame = ()  => {
+    btn_player.forEach((btn) => {
+        btn.classList.remove('desactivated');
+        btn.classList.remove('active');
+
+        btn_player.forEach(btn.addEventListener("click",play));
+    });
+    nextBtn.style.visibility="hidden";
+
+    crock.classList.remove('active');
+    cpaper.classList.remove('active');
+    cscissors.classList.remove('active');
+
+    message.textContent=" Your turn ! ";
+};
+
+nextBtn.addEventListener('click',newgame);
+
+btn_player.forEach((btn)=> btn.addEventListener("click",newgame));
+
+resertBTn.addEventListener("click",()=> {
+    scoreplayer.textContent=0;
+    scorecomputer.textContent=0;
+
+    newgame();
+});
+
+

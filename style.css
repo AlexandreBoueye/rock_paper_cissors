@@ -14,7 +14,7 @@
   }
   
   body {
-    background-color: var(--back);
+    background-color:darkgray;
     font-family: sans-serif;
     padding: 20px;
     display: flex;
